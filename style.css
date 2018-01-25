@@ -1,14 +1,25 @@
+.clockHand {
+	position: absolute;
+	top: 0;
+	left: 10px;
+}
+
 #clock {
+	
 }
 
 #clock img {
+
 }
 
 #hour {
+
 }
 
 #minute {
+
 }
 
 #second {
+	/*transform: rotate(6deg);*/
 }
