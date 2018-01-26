@@ -12,7 +12,7 @@ var hourDeg = 360 / (60 * 60 * 12);
 
 //Calculate and store current positions of clock hands. Translate current minutes, hours into seconds.
 //Then multiply # of seconds already passed by the degree change per second.
-var myDate = new Date();s
+var myDate = new Date();
 var currSecondPos = myDate.getSeconds() * secondDeg;
 var currMinutePos = ((myDate.getMinutes() * 60) + myDate.getSeconds()) * minuteDeg;
 var currHourPos = ((myDate.getHours() * 60 * 60) + (myDate.getMinutes() * 60) + myDate.getSeconds()) * hourDeg;
