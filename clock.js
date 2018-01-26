@@ -1,25 +1,27 @@
-// Get HTML references to clock hands.
+// (1) Get HTML references to clock hands, (2) declare position variables, (3) Calculate degree 
+// changes for each hand per second.
 var secondHand = document.getElementById("second");
 var minuteHand = document.getElementById("minute");
 var hourHand = document.getElementById("hour");
-
-// Calculate degree changes for each hand per second. How many seconds does it take for each hand 
-// to rotate a full 360 degrees?
+var currSecondPos;
+var currMinutePos;
+var currHourPos;
 var secondDeg = 360 / 60;
 var minuteDeg = 360 / (60 * 60);
 var hourDeg = 360 / (60 * 60 * 12);
 
-// Calculate and store current positions of clock hands using the Date() object. 
-// Translate minutes and hours into seconds, then multiply by degree change per second per hand.
-var myDate = new Date();
-var currSecondPos = myDate.getSeconds() * secondDeg;
-var currMinutePos = ((myDate.getMinutes() * 60) + myDate.getSeconds()) * minuteDeg;
-var currHourPos = ((myDate.getHours() * 60 * 60) + (myDate.getMinutes() * 60) + myDate.getSeconds()) * hourDeg;
-
-// Set starting positions for clock hands based on values calculated above.
-secondHand.style.transform = "rotate(" + currSecondPos + "deg)";
-minuteHand.style.transform = "rotate(" + currMinutePos + "deg)";
-hourHand.style.transform = "rotate(" + currHourPos + "deg)";
+function setTime () {
+	// Calculate correct positions of clock hands using the Date() object. 
+	var myDate = new Date();
+	currSecondPos = myDate.getSeconds() * secondDeg;
+	currMinutePos = ((myDate.getMinutes() * 60) + myDate.getSeconds()) * minuteDeg;
+	currHourPos = ((myDate.getHours() * 60 * 60) + (myDate.getMinutes() * 60) + myDate.getSeconds()) * hourDeg;
+	
+	// Set starting positions for clock hands based on values calculated above.
+	secondHand.style.transform = "rotate(" + currSecondPos + "deg)";
+	minuteHand.style.transform = "rotate(" + currMinutePos + "deg)";
+	hourHand.style.transform = "rotate(" + currHourPos + "deg)";
+}
 
 // Define increment functions for each clock hand.
 function increment() {
@@ -31,5 +33,7 @@ function increment() {
 	hourHand.style.transform = "rotate(" + currHourPos + "deg)";
 }
 
+setTime();
 // Set interval to call increment and move each hand every second.
-var myInterval = setInterval(increment, 1000);
+var incrementInterval = setInterval(increment, 1000);
+var resetInterval = setInterval(setTime, 1000000);
