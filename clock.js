@@ -12,10 +12,10 @@ var hourDeg = 360 / (60 * 60 * 12);
 
 function setTime () {
 	// Calculate correct positions of clock hands using the Date() object. 
-	var myDate = new Date();
-	currSecondPos = myDate.getSeconds() * secondDeg;
-	currMinutePos = ((myDate.getMinutes() * 60) + myDate.getSeconds()) * minuteDeg;
-	currHourPos = ((myDate.getHours() * 60 * 60) + (myDate.getMinutes() * 60) + myDate.getSeconds()) * hourDeg;
+	var now = new Date();
+	currSecondPos = now.getSeconds() * secondDeg;
+	currMinutePos = ((now.getMinutes() * 60) + now.getSeconds()) * minuteDeg;
+	currHourPos = ((now.getHours() * 60 * 60) + (now.getMinutes() * 60) + now.getSeconds()) * hourDeg;
 	
 	// Set starting positions for clock hands based on values calculated above.
 	secondHand.style.transform = "rotate(" + currSecondPos + "deg)";
